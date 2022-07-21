@@ -30,7 +30,7 @@ const audioHandler = async stream => {
         stream: stream
     })
 
-    const socket = new WebSocket(`ws://192.168.0.12:3000/socket/${peer._id}`)
+    const socket = new WebSocket(`ws://${window.location.host}/socket/${peer._id}`)
 
     peer.on('signal', msg => {
         if (msg.type === 'offer') {

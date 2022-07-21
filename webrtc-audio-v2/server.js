@@ -53,6 +53,7 @@ app.ws('/socket/:peerId', (ws, req) => {
                     network.set(peerId, {answer: data.answer, offer: entry.offer})
                     console.log(`${peerId} lodged answer`)
                 }
+                break;
             default:
                 console.info(`message type ${data.type} not registered`)
         }
@@ -64,6 +65,6 @@ app.ws('/socket/:peerId', (ws, req) => {
     })
 })
 
-app.listen(3000, '192.168.0.12', () => {
+app.listen(3000, () => {
     console.log('Your socket server is running on port 3000')
 })
