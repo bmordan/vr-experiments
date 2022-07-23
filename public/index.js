@@ -1,6 +1,9 @@
 let context
 let volume = 1
 AudioContext = AudioContext || webkitAudioContext
+const socketAddress = window.location.host.match(/localhost/) 
+    ? `ws://${window.location.host}/socket`
+    : `wss://${window.location.host}/socket`
 
 function setContext () {
     if (!context) {
@@ -13,7 +16,6 @@ function setContext () {
 
 function setVolume (event) {
     volume = event.target.value
-    console.info(`volume: ${volume}`)
 }
 
 document.addEventListener('mousemove', setContext)
@@ -30,7 +32,7 @@ const audioHandler = async stream => {
         stream: stream
     })
 
-    const socket = new WebSocket(`ws://${window.location.host}/socket/${peer._id}`)
+    const socket = new WebSocket(`${socketAddress}/${peer._id}`)
 
     peer.on('signal', msg => {
         if (msg.type === 'offer') {
@@ -90,4 +92,8 @@ const audioHandler = async stream => {
     })
 }
 
-navigator.mediaDevices.getUserMedia({video: false, audio: true}).then(audioHandler).catch(console.error)
+navigator
+    .mediaDevices
+    .getUserMedia({video: false, audio: true})
+    .then(audioHandler)
+    .catch(console.error)
