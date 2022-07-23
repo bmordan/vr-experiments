@@ -53,7 +53,6 @@ const audioHandler = async stream => {
         setContext()
         const source = context.createMediaStreamSource(stream)
         const gainNode = context.createGain()
-        console.log(mediaStream.getAudioTracks())
         gainNode.gain.value = Math.fround(volume/10)
         source.connect(gainNode)
         gainNode.connect(context.destination)
