@@ -5,9 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/simple-peer/simplepeer.min.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <title>WebRTC Chat</title>
 </head>
 <body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="chair" src="/models/big_leather_chair/scene.gltf"></a-asset-item>
+            <a-asset-item id="tv" src="/models/vintage_tv_free/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-entity gltf-model="#chair" position="0 0 -5" scale="1 1 1" rotation="0 200 0"></a-entity>
+        <a-entity gltf-model="#chair" position="2 0 -5" scale="1 1 1" rotation="0 140 0"></a-entity>
+        <a-entity gltf-model="#tv" position=".5 0 -2" scale=".1 .1 .1" rotation="0 170 0"></a-entity>
+        <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#FFF"></a-plane>
+        <a-entity light="type: hemisphere; color: #FFF; groundColor: #FFF; intensity: 3"></a-entity>
+        <a-sky color="#FFF"></a-sky>
+    </a-scene>
     <button id="start" onclick="setContext">Start Audio</button>
     <input title="volume" name="volume" type="range" min="0" max="10" value="1" id="volume" />
     <script src="index.js"></script>
